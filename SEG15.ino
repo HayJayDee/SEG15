@@ -324,15 +324,10 @@ void loop() {
           freq = new_freq;
         }else if(freq <= MAX_FREQ && new_freq > MAX_FREQ) {
           is20m = true;
-          
-          //if(freq + 3000 <= MAX_FREQ || (freq + 3000 > MAX_FREQ && freq + 3000 < MIN_FREQ20) || freq + 3000 > MAX_FREQ20) {
-          //  freq = MIN_FREQ20;
-          //}else {
-            freq = min(new_freq + 3000, MAX_FREQ20);
-          //}
+          freq = min(new_freq + 2000, MAX_FREQ20);
         }else if(freq >= MIN_FREQ20 && new_freq < MIN_FREQ20) {
           is20m = false;
-          freq = MAX_FREQ + 1 - get_exp10(freq_index);
+          freq = new_freq - 2000;
         }
         encoder.write(0);
         writeFreq();
